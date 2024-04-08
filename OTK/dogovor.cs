@@ -17,16 +17,16 @@ namespace OTK
 {
     public partial class dogovor : Form
     {
-        public dogovor()
+        public dogovor(string worker)
         {
             InitializeComponent();
+            textBox2.Text = worker;
         }
         public static int n = 0;
         private void FieldForm_Clear()
         {
             textBox1.Text = "0";
             comboBox1.Text = "";
-            comboBox2.Text = "";
             comboBox3.Text = "";
             textBox5.Text = "";
             checkBox1.Checked = false;
@@ -38,15 +38,15 @@ namespace OTK
             Load();
         }
 
+
         private void Load()
         {
+            string sql = "select * from client";
+            Main.Table_Fill("Клиент", sql);
             Main.Table_Fill("Заказ", "Select dogovor.id, date, client.name, type.naming, worker.FIO, skidka, type.price, status from dogovor inner join type on dogovor.id_type = type.id inner join client on dogovor.id_client = client.id inner join worker on dogovor.id_worker = worker.id order by id");
             dataGridView1.DataSource = Main.ds.Tables["Заказ"].DefaultView;
             comboBox1.DataSource = Main.ds.Tables["Услуги"];
             comboBox1.DisplayMember = "naming";
-
-            comboBox2.DataSource = Main.ds.Tables["Сотрудники"];
-            comboBox2.DisplayMember = "FIO";
 
             comboBox3.DataSource = Main.ds.Tables["Клиент"];
             comboBox3.DisplayMember = "name";
@@ -87,7 +87,6 @@ namespace OTK
             textBox1.Text = Main.ds.Tables["Заказ"].Rows[n]["id"].ToString();
             dateTimePicker1.Text = Main.ds.Tables["Заказ"].Rows[n]["date"].ToString();
             comboBox1.Text = Main.ds.Tables["Заказ"].Rows[n]["naming"].ToString();
-            comboBox2.Text = Main.ds.Tables["Заказ"].Rows[n]["FIO"].ToString();
             comboBox3.Text = Main.ds.Tables["Заказ"].Rows[n]["name"].ToString();
             textBox5.Text = Main.ds.Tables["Заказ"].Rows[n]["skidka"].ToString();
            
@@ -133,7 +132,7 @@ namespace OTK
             string sql;
             string Id3 = Main.ds.Tables["Клиент"].DefaultView[comboBox3.SelectedIndex]["id"].ToString();
             string Id1 = Main.ds.Tables["Услуги"].DefaultView[comboBox1.SelectedIndex]["id"].ToString();
-            string Id2 = Main.ds.Tables["Сотрудники"].DefaultView[comboBox2.SelectedIndex]["id"].ToString();
+            string Id2 = textBox1.Text;
             if (n < Main.ds.Tables["Заказ"].Rows.Count)
             {
                 sql = "Update dogovor set date = '" + dateTimePicker1.Value.ToString("yyyy-MM-dd") + "', id_client =" + Id3 + ", id_type =" + Id1 + ", id_worker =" + Id2 + ", skidka =" + textBox5.Text + ", status =" + checkBox1.Checked + " where id = " + textBox1.Text;

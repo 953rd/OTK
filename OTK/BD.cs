@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,23 +14,19 @@ namespace OTK
 {
     public partial class BD : Form
     {
-        public BD()
+        private dogovor dogovor;
+
+        public BD(string FIO)
         {
             InitializeComponent();
+            string worker = FIO;
+            dogovor = new dogovor(worker);
         }
 
         private void счётToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            dogovor project = new dogovor();
-            Main.tabControl1.Controls.Add(project.tabControl1.TabPages[0]);
+            Main.tabControl1.Controls.Add(dogovor.tabControl1.TabPages[0]);
             Main.tabControl1.SelectedIndex = Main.tabControl1.TabCount - 1;
-        }
-
-        private void вкладыToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            dogovor project = new dogovor();
-            Main.tabControl1.Controls.Add(project.tabControl1.TabPages[0]);
-
         }
 
         private void button1_Click(object sender, EventArgs e)
