@@ -104,12 +104,6 @@
     <Compile Include="BD.Designer.cs">
       <DependentUpon>BD.cs</DependentUpon>
     </Compile>
-    <Compile Include="clientRegister.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="clientRegister.Designer.cs">
-      <DependentUpon>clientRegister.cs</DependentUpon>
-    </Compile>
     <Compile Include="dogovor.cs">
       <SubType>Form</SubType>
     </Compile>

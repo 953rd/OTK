@@ -38,6 +38,7 @@ namespace OTK
                 Main.tabControl1.TabPages.RemoveAt(Main.tabControl1.TabCount - 1);
             LogIn login = new LogIn();
             Main.tabControl1.Controls.Add(login.tabControl1.TabPages[0]);
+            Main.tabControl1.Controls.Add(login.tabControl1.TabPages[0]);
         }
     }
 }

@@ -50,12 +50,6 @@ namespace OTK
                 MessageBox.Show("Неправильный логин или пароль");
             }
         }
-        private void tabPage2_Enter(object sender, EventArgs e)
-        {
-            string sql = "Select id, name, address, phone from client";
-            Main.Table_Fill("Клиент", sql);
-            Main.ds.Tables["Клиент"].DefaultView.Sort = "id";
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -63,7 +57,7 @@ namespace OTK
         }
         private void button3_click(object sender, EventArgs e)
         {
-            string sql = "Insert into client (naming, address, phone) values('" + textBox5.Text + "', '" + textBox4.Text + "', '" + textBox3.Text + "')";
+            string sql = "Insert into client (name, address, phone) values('" + textBox5.Text + "', '" + textBox4.Text + "', '" + maskedTextBox1.Text + "')";
             if (!Main.Modification_Execute(sql))
                 return;
         }

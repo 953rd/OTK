@@ -40,32 +40,32 @@ namespace OTK
 
         private void Load()
         {
-            Main.Table_Fill("Заказ", "Select dogovor.id, date, client.naming, type.name, worker.FIO, skidka, type.price, status from dogovor inner join type on dogovor.id_type = type.id inner join client on dogovor.id_client = client.id inner join worker on dogovor.id_worker = worker.id order by id");
+            Main.Table_Fill("Заказ", "Select dogovor.id, date, client.name, type.naming, worker.FIO, skidka, type.price, status from dogovor inner join type on dogovor.id_type = type.id inner join client on dogovor.id_client = client.id inner join worker on dogovor.id_worker = worker.id order by id");
             dataGridView1.DataSource = Main.ds.Tables["Заказ"].DefaultView;
             comboBox1.DataSource = Main.ds.Tables["Услуги"];
-            comboBox1.DisplayMember = "name";
+            comboBox1.DisplayMember = "naming";
 
             comboBox2.DataSource = Main.ds.Tables["Сотрудники"];
             comboBox2.DisplayMember = "FIO";
 
             comboBox3.DataSource = Main.ds.Tables["Клиент"];
-            comboBox3.DisplayMember = "naming";
+            comboBox3.DisplayMember = "name";
 
             dataGridView1.Columns["id_client"].Visible = false;
             dataGridView1.Columns["id_worker"].Visible = false;
             dataGridView1.Columns["id_type"].Visible = false;
             dataGridView1.Columns["id"].HeaderText = "Код";
             dataGridView1.Columns["date"].HeaderText = "Дата";
-            dataGridView1.Columns["naming"].HeaderText = "Клиент";
-            dataGridView1.Columns["name"].HeaderText = "Услуга";
+            dataGridView1.Columns["name"].HeaderText = "Клиент";
+            dataGridView1.Columns["naming"].HeaderText = "Услуга";
             dataGridView1.Columns["FIO"].HeaderText = "Код сотрудника";
             dataGridView1.Columns["skidka"].HeaderText = "Скидка %";
             dataGridView1.Columns["price"].HeaderText = "Цена";
             dataGridView1.Columns["status"].HeaderText = "Статус";
             dataGridView1.Columns["id"].DisplayIndex = 0;
             dataGridView1.Columns["date"].DisplayIndex = 1;
-            dataGridView1.Columns["naming"].DisplayIndex = 2;
-            dataGridView1.Columns["name"].DisplayIndex = 3;
+            dataGridView1.Columns["name"].DisplayIndex = 2;
+            dataGridView1.Columns["naming"].DisplayIndex = 3;
             dataGridView1.Columns["FIO"].DisplayIndex = 4;
             dataGridView1.Columns["skidka"].DisplayIndex = 5;
             dataGridView1.Columns["price"].DisplayIndex = 6;
@@ -86,9 +86,9 @@ namespace OTK
         {
             textBox1.Text = Main.ds.Tables["Заказ"].Rows[n]["id"].ToString();
             dateTimePicker1.Text = Main.ds.Tables["Заказ"].Rows[n]["date"].ToString();
-            comboBox1.Text = Main.ds.Tables["Заказ"].Rows[n]["name"].ToString();
+            comboBox1.Text = Main.ds.Tables["Заказ"].Rows[n]["naming"].ToString();
             comboBox2.Text = Main.ds.Tables["Заказ"].Rows[n]["FIO"].ToString();
-            comboBox3.Text = Main.ds.Tables["Заказ"].Rows[n]["naming"].ToString();
+            comboBox3.Text = Main.ds.Tables["Заказ"].Rows[n]["name"].ToString();
             textBox5.Text = Main.ds.Tables["Заказ"].Rows[n]["skidka"].ToString();
            
             checkBox1.Checked = Convert.ToInt32(Main.ds.Tables["Заказ"].Rows[n]["status"]) == 1;
